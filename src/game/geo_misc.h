@@ -23,7 +23,7 @@ ALWAYS_INLINE void make_vertex(Vtx *vtx, s32 n, s16 x, s16 y, s16 z, s16 tx, s16
     vtx[n].v.ob[1] = y;
     vtx[n].v.ob[2] = z;
 
-    vtx[n].v.flag = 0;
+    // vtx[n].v.flag = 0; // flag member not available on 3DS Vtx
 
     vtx[n].v.tc[0] = tx;
     vtx[n].v.tc[1] = ty;
@@ -45,7 +45,7 @@ ALWAYS_INLINE void make_simple_vertex(Vtx *vtx, s32 n, s16 x, s16 y, s16 z, s16 
     vtx[n].v.ob[1] = y;
     vtx[n].v.ob[2] = z;
 
-    vtx[n].v.flag = 0;
+    // vtx[n].v.flag = 0; // flag member not available on 3DS Vtx
 
     vtx[n].v.tc[0] = tx;
     vtx[n].v.tc[1] = ty;

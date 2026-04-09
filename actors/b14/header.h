@@ -1,3 +1,8 @@
+#ifndef B14_HEADER_H
+#define B14_HEADER_H
+
+#include "PR/gbi.h"
+
 extern Lights1 b14_f3d_material_lights;
 extern u8 b14_b14_ci8[];
 extern u8 b14_b14_ci8_pal_rgba16[];
@@ -6,3 +11,5 @@ extern Gfx b14_Plane_001_mesh_tri_0[];
 extern Gfx mat_b14_f3d_material[];
 extern Gfx mat_revert_b14_f3d_material[];
 extern Gfx b14_Plane_001_mesh[];
+
+#endif

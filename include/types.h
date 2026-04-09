@@ -4,6 +4,50 @@
 // This file contains various data types used in Super Mario 64 that don't yet
 // have an appropriate header.
 
+// Include basic types first
+#include "PR/ultratypes.h"
+
+// Define N64 controller types directly to avoid circular dependency
+typedef struct {
+    u16 type;
+    u8 status;
+    u8 error;
+} OSContStatus;
+
+typedef struct {
+    u16 button;
+    s8 stick_x;
+    s8 stick_y;
+    s8 c_stick_x;
+    s8 c_stick_y;
+    u8 l_trig;
+    u8 r_trig;
+    u8 errno;
+} OSContPadEx;
+
+// Define OSTask directly to avoid circular dependency
+typedef union {
+    struct {
+        u32 type;
+        u32 flags;
+        u64 *ucode_boot;
+        u32 ucode_boot_size;
+        u64 *ucode;
+        u32 ucode_size;
+        u64 *ucode_data;
+        u32 ucode_data_size;
+        u64 *dram_stack;
+        u32 dram_stack_size;
+        u64 *output_buff;
+        u64 *output_buff_size;
+        u64 *data_ptr;
+        u32 data_size;
+        u64 *yield_data_ptr;
+        u32 yield_data_size;
+    } t;
+    long long int force_structure_alignment;
+} OSTask;
+
 #include <ultra64.h>
 #include "macros.h"
 #include "config.h"

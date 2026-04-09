@@ -1,3 +1,8 @@
+#ifndef SHOPGUI_HEADER_H
+#define SHOPGUI_HEADER_H
+
+#include "PR/gbi.h"
+
 extern Lights1 shopgui_Border_lights;
 extern Lights1 shopgui_Check_lights;
 extern u8 shopgui_shopgui_ci8[];
@@ -13,3 +18,5 @@ extern Gfx mat_revert_shopgui_Border[];
 extern Gfx mat_shopgui_Check[];
 extern Gfx mat_revert_shopgui_Check[];
 extern Gfx shopgui_Plane_001_mesh[];
+
+#endif

@@ -3,12 +3,12 @@
 
 #include "command_macros_base.h"
 
-#include "game/shadow.h"
-#include "game/object_helpers.h"
-#include "game/behavior_actions.h"
-#include "game/segment2.h"
-#include "game/mario_misc.h"
-#include "game/mario_actions_cutscene.h"
+#include "shadow.h"
+#include "object_helpers.h"
+#include "behavior_actions.h"
+#include "segment2.h"
+#include "mario_misc.h"
+#include "mario_actions_cutscene.h"
 
 // sky background params
 enum SkyBackgroundParams {

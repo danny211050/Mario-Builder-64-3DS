@@ -1,3 +1,8 @@
+#ifndef EXECUTIVE_HEADER_H
+#define EXECUTIVE_HEADER_H
+
+#include "PR/gbi.h"
+
 extern Lights1 executive__Audience_layer1_lights;
 extern u8 executive__Audience_ia8[];
 extern u8 executive__Static2_i8[];
@@ -16,3 +21,5 @@ extern Gfx mat_revert_executive__Static_layer1[];
 extern Gfx mat_executive__fountain[];
 extern Gfx mat_revert_executive__fountain[];
 extern Gfx executive__circle_mesh[];
+
+#endif

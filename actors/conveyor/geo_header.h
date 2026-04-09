@@ -1,3 +1,8 @@
+#ifndef CONVEYOR_GEO_HEADER_H
+#define CONVEYOR_GEO_HEADER_H
+
+#include "PR/gbi.h"
+
 extern const GeoLayout conveyor_geo[];
 extern Lights1 conveyor_conveyor_side_lights;
 extern Lights1 conveyor_conveyor_top_lights;
@@ -13,3 +18,5 @@ extern Gfx mat_conveyor_conveyor_top[];
 extern Gfx mat_revert_conveyor_conveyor_top[];
 extern Gfx conveyor_blaster_007_mesh_layer_1[];
 extern Gfx conveyor_material_revert_render_settings[];
+
+#endif

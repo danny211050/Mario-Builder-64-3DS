@@ -6063,6 +6063,9 @@ void tv_head_projectile(void) {
 //     o->oInteractStatus = 0;
 // }
 
+// Stub out df_tree function
+void df_tree(s32);
+
 void bhv_tree_init() {
     df_tree(CMM_DF_CONTEXT_INIT);
 }

@@ -1,17 +1,24 @@
 #include <ultra64.h>
 
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+
 #include "sm64.h"
 #include "camera.h"
 #include "seq_ids.h"
 #include "dialog_ids.h"
-#include "audio/external.h"
+#include "external.h"
 #include "mario_misc.h"
 #include "game_init.h"
 #include "hud.h"
-#include "engine/math_util.h"
+#include "math_util.h"
 #include "area.h"
-#include "engine/surface_collision.h"
-#include "engine/behavior_script.h"
+#include "surface_collision.h"
+#include "behavior_script.h"
 #include "level_update.h"
 #include "ingame_menu.h"
 #include "mario_actions_cutscene.h"
@@ -23,13 +30,17 @@
 #include "behavior_data.h"
 #include "object_list_processor.h"
 #include "paintings.h"
-#include "engine/graph_node.h"
+#include "graph_node.h"
 #include "level_table.h"
 #include "config.h"
 #include "puppyprint.h"
 #include "rovent.h"
 #include "cursed_mirror_maker.h"
 #include "profiling.h"
+
+// Forward declarations
+void get_surface_normal(f32 normal[3], struct Surface *surf);
+void get_surface_normal_oo(f32 normal[4], struct Surface *surf);
 
 #define CBUTTON_MASK (U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS)
 
@@ -1178,7 +1189,7 @@ void mode_8_directions_camera(struct Camera *c) {
         vec3f_copy(origin,gMarioState->pos);
         origin[1] += 50.0f;
         vec3f_diff(camdir,c->pos,origin);
-        find_surface_on_ray(origin, camdir, &surf, &hitpos, RAYCAST_FIND_CEIL);
+        find_surface_on_ray(origin, camdir, &surf, hitpos, RAYCAST_FIND_CEIL);
 
         if (surf) {
             vec3f_copy(c->pos,hitpos);
@@ -1193,7 +1204,7 @@ void mode_8_directions_camera(struct Camera *c) {
         origin[1] += 50.0f;
         vec3f_diff(camdir,c->pos,origin);
 
-        find_surface_on_ray(origin, camdir, &surf, &hitpos, RAYCAST_FIND_WALL);
+        find_surface_on_ray(origin, camdir, &surf, hitpos, RAYCAST_FIND_WALL);
 
         Vec3f camera_hit_diff;
         vec3f_diff(camera_hit_diff,origin,hitpos);
@@ -6123,7 +6134,7 @@ struct CameraTrigger sCamBOB[] = {
 // };
 struct CameraTrigger *sCameraTriggers[LEVEL_COUNT + 1] = {
     NULL,
-    #include "levels/level_defines.h"
+    #include "level_defines.h"
 };
 #undef _
 #undef STUB_LEVEL

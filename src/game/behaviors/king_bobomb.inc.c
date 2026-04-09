@@ -1,5 +1,16 @@
 // king_bobomb.inc.c
 
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+#include "types.h"
+#include "object_helpers.h"
+// #include "model.h"
+
 // Copy of geo_update_projectile_pos_from_parent
 Gfx *geo_update_held_mario_pos(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx) {
     if (callContext == GEO_CONTEXT_RENDER) {
@@ -26,7 +37,7 @@ void king_bobomb_act_inactive(void) { // act 0
             o->oHomeX = o->oPosX;
             o->oHomeZ = o->oPosZ;
             o->oHomeY = find_floor_height(o->oPosX,o->oPosY,o->oPosZ);
-            vec3f_copy(&o->oImbueVec, &o->oPosVec);
+            vec3f_copy((f32 *)&o->oImbueVec, (f32 *)&o->oPosVec);
 
             cur_obj_become_intangible();
             gSecondCameraFocus = o;

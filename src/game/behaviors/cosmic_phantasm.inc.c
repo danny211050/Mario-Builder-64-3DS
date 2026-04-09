@@ -49,7 +49,7 @@ void bhv_cosmic_phantasm(void) {
     struct Surface *ptr;
 
     Vec3f previous;
-    vec3f_copy(&previous,&o->oPosVec); //record position before moving step
+    vec3f_copy((f32 *)&previous, (f32 *)&o->oPosVec); //record position before moving step
 
     cur_obj_update_floor_and_walls();
     cur_obj_move_standard(-78);
@@ -63,7 +63,7 @@ void bhv_cosmic_phantasm(void) {
     f32 current_floor_height = find_floor(o->oPosX, o->oPosY, o->oPosZ, &ptr);
 
     if (current_floor_height < o->oHomeY-100.0f) {
-        vec3f_copy(&o->oPosVec,&previous);//Prevent him from going off the ledge
+        vec3f_copy((f32 *)&o->oPosVec, (f32 *)&previous);//Prevent him from going off the ledge
         o->oPosY = kept_new_y;//this is a little cringe, but who cares
     }
 
@@ -660,7 +660,7 @@ void bhv_sr_spike(void) {
 u8 tennis_turns[] = {
     0,12,6,3,
 };//table for how much vollying until showrunner gives in. also reverse order
-#include "actors/group14.h"
+#include "group14.h"
 void bhv_tennis(void) {
     o->oOpacity = 255;
     spawn_object(o,MODEL_MAKER_SHOWRUNNER_BALL_2,bhvTennis2);

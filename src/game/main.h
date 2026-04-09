@@ -58,6 +58,8 @@ extern OSThread hvqmThread;
 #if ENABLE_RUMBLE
 extern OSThread gRumblePakThread;
 
+// Stub out OSPfs for 3DS
+typedef struct OSPfs OSPfs;
 extern OSPfs gRumblePakPfs;
 #endif
 
@@ -104,9 +106,13 @@ extern struct SPTask        *sCurrentDisplaySPTask;
 //  the RCP timer gets set twice and the game tries to
 //  insert __osBaseTimer into a ring buffer that only contains itself,
 //  causing a particularly messy crash.
+// Stub out OSTimer for 3DS
+struct OSTimer {
+    u8 padding[64];
+};
 typedef struct {
     u8 started;
-    OSTimer timer;
+    struct OSTimer timer;
 } OSTimerEx;
 
 void set_vblank_handler(s32 index, struct VblankHandler *handler, OSMesgQueue *queue, OSMesg *msg);

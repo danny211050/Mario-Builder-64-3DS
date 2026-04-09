@@ -1,5 +1,16 @@
 // sparkle_spawn_star.inc.c
 
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+#include "types.h"
+#include "object_helpers.h"
+// #include "model.h"
+
 struct ObjectHitbox sSparkleSpawnStarHitbox = {
     /* interactType:      */ INTERACT_STAR_OR_KEY,
     /* downOffset:        */ 0,

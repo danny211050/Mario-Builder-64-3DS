@@ -1,4 +1,12 @@
 // thwomp.inc.c
+
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+
 #define oHomeY2 oHomeX
 
 void grindel_thwomp_act_on_ground(void) {

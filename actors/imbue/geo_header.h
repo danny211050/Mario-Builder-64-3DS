@@ -1,3 +1,8 @@
+#ifndef IMBUE_GEO_HEADER_H
+#define IMBUE_GEO_HEADER_H
+
+#include "PR/gbi.h"
+
 extern const GeoLayout imbue_geo[];
 extern Vtx imbue_Plane_003_mesh_layer_7_vtx_0[89];
 extern Gfx imbue_Plane_003_mesh_layer_7_tri_0[];
@@ -13,3 +18,5 @@ extern Gfx mat_imbue_noz_black[];
 extern Gfx mat_revert_imbue_noz_black[];
 extern Gfx imbue_Plane_003_mesh_layer_7[];
 extern Gfx imbue_material_revert_render_settings[];
+
+#endif

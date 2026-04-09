@@ -10,7 +10,7 @@ extern const struct Animation *const Hammerbro_anims[];
 #include "Hammerbro/geo_header.h"
 #include "Hammerbro/anim_header.h"
 #include "hammer/geo_header.h"
-#include "actors/crab/geo_header.h"
+#include "crab/geo_header.h"
 #include "crab_anims/anim_header.h"
 #include "Rex/geo_header.h"
 #include "Rex/anim_header.h"

@@ -1,11 +1,39 @@
 #include <ultra64.h>
 
+#ifdef _3DS
+#include "gbi.h"
+
+// Stub definitions for GBI macros that are not properly defined in 3DS gbi.h
+#ifndef gDPSetTextureImage
+#define gDPSetTextureImage(pkt, fmt, siz, width, img) do {} while(0)
+#endif
+#ifndef gSPDisplayList
+#define gSPDisplayList(pkt, dl) do {} while(0)
+#endif
+#ifndef gDPPipeSync
+#define gDPPipeSync(pkt) do {} while(0)
+#endif
+#ifndef gSP1Triangle
+#define gSP1Triangle(pkt, v0, v1, v2, flag) do {} while(0)
+#endif
+#ifndef gSPEndDisplayList
+#define gSPEndDisplayList(pkt) do {} while(0)
+#endif
+#endif
+
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+
 //lol
 #include "area.h"
 #include "camera.h"
-#include "engine/graph_node.h"
-#include "engine/math_util.h"
-#include "engine/surface_collision.h"
+#include "graph_node.h"
+#include "math_util.h"
+#include "surface_collision.h"
 #include "game_init.h"
 #include "interaction.h"
 #include "level_table.h"
@@ -29,7 +57,7 @@
 #include "save_file.h"
 #include "sound_init.h"
 #include "rumble_init.h"
-#include "actors/group0.h"
+#include "group0.h"
 //lol
 
 
@@ -38,10 +66,10 @@
 #include "memory.h"
 #include "envfx_snow.h"
 #include "envfx_bubbles.h"
-#include "engine/surface_collision.h"
-#include "engine/math_util.h"
-#include "engine/behavior_script.h"
-#include "audio/external.h"
+#include "surface_collision.h"
+#include "math_util.h"
+#include "behavior_script.h"
+#include "external.h"
 #include "textures.h"
 #include "level_geo.h"
 

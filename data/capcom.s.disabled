@@ -1,0 +1,12 @@
+/* Assembly Macros - inlined for 3DS build */
+.macro glabel label
+    .global \label
+    .balign 4
+    \label:
+.endm
+
+.section .data
+
+glabel _capcomRomStart
+.incbin "data/capcom.hvqm"
+glabel _capcomRomEnd

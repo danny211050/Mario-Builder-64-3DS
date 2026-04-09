@@ -1,5 +1,31 @@
 #include <ultra64.h>
 
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+#ifdef _3DS
+// Stub definitions for GBI macros that are not properly defined in 3DS gbi.h
+#ifndef gDPSetTextureImage
+#define gDPSetTextureImage(pkt, fmt, siz, width, img) do {} while(0)
+#endif
+#ifndef gSPDisplayList
+#define gSPDisplayList(pkt, dl) do {} while(0)
+#endif
+#ifndef gDPPipeSync
+#define gDPPipeSync(pkt) do {} while(0)
+#endif
+#ifndef gSP1Triangle
+#define gSP1Triangle(pkt, v0, v1, v2, flag) do {} while(0)
+#endif
+#ifndef gSPEndDisplayList
+#define gSPEndDisplayList(pkt) do {} while(0)
+#endif
+#endif
+
 #include "sm64.h"
 #include "dialog_ids.h"
 #include "game_init.h"
@@ -9,13 +35,17 @@
 #include "level_update.h"
 #include "envfx_snow.h"
 #include "envfx_bubbles.h"
-#include "engine/surface_collision.h"
-#include "engine/math_util.h"
-#include "engine/behavior_script.h"
-#include "audio/external.h"
+#include "surface_collision.h"
+#include "math_util.h"
+#include "behavior_script.h"
+#include "external.h"
 #include "obj_behaviors.h"
 #include "level_geo.h"
-#include "include/types.h"
+#include "types.h"
+
+// Function declarations for envfx functions defined in envfx_bubbles.c
+u32 envfx_init_lava_bubble(void);
+Gfx *envfx_update_bubble_particles(s32 mode, Vec3s marioPos, Vec3s camFrom, Vec3s camTo);
 
 /**
  * This file contains the function that handles 'environment effects',
@@ -528,7 +558,7 @@ Gfx *envfx_update_snow(s32 snowMode, Vec3s marioPos, Vec3s camFrom, Vec3s camTo)
         gSP1Triangle(gfx++, 12, 13, 14, 0);
     }
 
-    gSPDisplayList(gfx++, &tiny_bubble_dl_0B006AB0)
+    gSPDisplayList(gfx++, &tiny_bubble_dl_0B006AB0);
 
     gEnvFxBuffer += gSnowParticleMaxCount;
     Gfx *gfxBubbles = envfx_update_bubble_particles(ENVFX_LAVA_BUBBLES, marioPos, camFrom, camTo);

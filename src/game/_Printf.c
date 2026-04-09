@@ -1,6 +1,11 @@
+#include <PR/ultratypes.h>
 #include <stdarg.h>
 #include <string.h>
 #include "printf.h"
+
+#ifndef TRUE
+#define TRUE 1
+#endif
 
 #define ATOI(i, a)                                                                                     \
     for (i = 0; *a >= '0' && *a <= '9'; a++)                                                           \

@@ -1,3 +1,8 @@
+#ifndef NEW_CULL_MARKER_GEO_HEADER_H
+#define NEW_CULL_MARKER_GEO_HEADER_H
+
+#include "PR/gbi.h"
+
 extern const GeoLayout new_cull_marker_geo[];
 extern Lights1 new_cull_marker_red_lights;
 extern Lights1 new_cull_marker_black_lights;
@@ -9,3 +14,5 @@ extern Gfx mat_new_cull_marker_red[];
 extern Gfx mat_new_cull_marker_black[];
 extern Gfx new_cull_marker_Plane_mesh_layer_1[];
 extern Gfx new_cull_marker_material_revert_render_settings[];
+
+#endif

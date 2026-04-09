@@ -1,3 +1,8 @@
+#ifndef ONOFFBUTTON_GEO_HEADER_H
+#define ONOFFBUTTON_GEO_HEADER_H
+
+#include "PR/gbi.h"
+
 extern const GeoLayout onoffbutton_000_switch_opt1[];
 extern const GeoLayout onoffbutton_geo[];
 extern Lights1 onoffbutton_redswitch_lights;
@@ -15,3 +20,5 @@ extern Gfx mat_revert_onoffbutton_blueswitch[];
 extern Gfx onoffbutton_000_displaylist_mesh_layer_1[];
 extern Gfx onoffbutton_000_displaylist_mesh_layer_1_mat_override_blueswitch_0[];
 extern Gfx onoffbutton_material_revert_render_settings[];
+
+#endif

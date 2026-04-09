@@ -1,3 +1,8 @@
+#ifndef NOTEBLOCK_GEO_HEADER_H
+#define NOTEBLOCK_GEO_HEADER_H
+
+#include "PR/gbi.h"
+
 extern const GeoLayout noteblock_geo[];
 extern Lights1 noteblock_noteblock_lights;
 extern u8 noteblock_noteblock_i8[];
@@ -6,3 +11,5 @@ extern Gfx noteblock_Cube_007_mesh_layer_1_tri_0[];
 extern Gfx mat_noteblock_noteblock[];
 extern Gfx noteblock_Cube_007_mesh_layer_1[];
 extern Gfx noteblock_material_revert_render_settings[];
+
+#endif

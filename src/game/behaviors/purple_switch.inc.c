@@ -7,6 +7,17 @@
  * the environment.
  */
 
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+#include "types.h"
+#include "object_helpers.h"
+// #include "model.h"
+
 void bhv_purple_switch_loop(void) {
     struct Object *crate;
     u8 crateon = FALSE;

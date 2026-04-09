@@ -1,5 +1,12 @@
 #include <PR/ultratypes.h>
 
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+
 #include "config.h"
 #include "area.h"
 #include "seq_ids.h"
@@ -8,31 +15,37 @@
 #include "behavior_data.h"
 #include "game_init.h"
 #include "object_list_processor.h"
-#include "engine/surface_load.h"
+#include "surface_load.h"
 #include "ingame_menu.h"
 #include "screen_transition.h"
 #include "mario.h"
 #include "mario_actions_cutscene.h"
 #include "print.h"
 #include "hud.h"
-#include "audio/external.h"
+#include "external.h"
 #include "area.h"
 #include "rendering_graph_node.h"
 #include "level_update.h"
-#include "engine/geo_layout.h"
+#include "geo_layout.h"
 #include "save_file.h"
 #include "sound_init.h"
 #include "level_table.h"
 #include "dialog_ids.h"
 #include "puppyprint.h"
 #include "debug_box.h"
-#include "engine/colors.h"
+#include "colors.h"
 #include "profiling.h"
 #include "rovent.h"
 #include "cursed_mirror_maker.h"
 #ifdef S2DEX_TEXT_ENGINE
 #include "s2d_engine/init.h"
 #endif
+
+// Stub out implicit function declarations
+void set_and_reset_transition_fade_timer(s32, s32);
+void gSPViewport(Gfx *, uintptr_t);
+void gDPSetScissor(Gfx *, u32, u32, u32, u32, u32);
+void render_revent_textbox(void);
 
 struct SpawnInfo gPlayerSpawnInfos[1];
 struct GraphNode *gGraphNodePointers[MODEL_ID_COUNT];

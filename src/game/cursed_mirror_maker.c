@@ -1,27 +1,34 @@
 //object includes (a lot)
-#include "text_strings.h"
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+#include "text_strings.h.in"
 #include "types.h"
-#include "actors/common0.h"
-#include "actors/common1.h"
+#include "common0.h"
+#include "common1.h"
 #include "area.h"
-#include "audio/external.h"
+#include "external.h"
 #include "behavior_actions.h"
 #include "behavior_data.h"
 #include "camera.h"
 #include "debug.h"
 #include "dialog_ids.h"
-#include "engine/behavior_script.h"
-#include "engine/graph_node.h"
-#include "engine/math_util.h"
-#include "engine/surface_collision.h"
-#include "engine/surface_load.h"
+#include "behavior_script.h"
+#include "graph_node.h"
+#include "math_util.h"
+#include "surface_collision.h"
+#include "surface_load.h"
 #include "game_init.h"
 #include "ingame_menu.h"
 #include "interaction.h"
 #include "level_misc_macros.h"
 #include "level_table.h"
 #include "level_update.h"
-#include "levels/menu/header.h"
+#include "menu/header.h"
 #include "main.h"
 #include "mario.h"
 #include "mario_actions_cutscene.h"
@@ -32,31 +39,35 @@
 #include "object_helpers.h"
 #include "object_list_processor.h"
 #include "paintings.h"
-#include "platform_displacement.h"
-#include "rendering_graph_node.h"
+#include "print.h"
 #include "save_file.h"
 #include "seq_ids.h"
-#include "sm64.h"
+#include "spawn_object.h"
+#include "spawn_sound.h"
+#include "level_commands.h"
+#include "group0.h"
 #include "spawn_object.h"
 #include "spawn_sound.h"
 #include "rumble_init.h"
 #include "puppylights.h"
 #include "rovent.h"
 #include "cursed_mirror_maker.h"
-#include "actors/group0.h"
-#include "actors/group14.h"
-#include "actors/group17.h"
+#include "group0.h"
+#include "group14.h"
+#include "group17.h"
 #include "sram.h"
 #include "level_geo.h"
-#include "src/buffers/framebuffers.h"
+#include "framebuffers.h"
 #include "memory.h"
 #include "geo_misc.h"
 #include "mario_actions_automatic.h"
-#include "levels/scripts.h"
+#include "scripts.h"
 #include "emutest.h"
 
-#include "libcart/include/cart.h"
-#include "libcart/ff/ff.h"
+#include "cart.h"
+#include "ff.h"
+
+#include "gbi_3ds.h"
 
 extern void super_cum_working(struct Object *obj, s32 animIndex);
 
@@ -185,8 +196,8 @@ s16 cmm_tip_timer = 0;
 
 struct ExclamationBoxContents *cmm_exclamation_box_contents;
 
-#include "src/game/cursed_mirror_maker_df.inc.c"
-#include "src/game/cursed_mirror_maker_data.inc.c"
+#include "cursed_mirror_maker_df.inc.c"
+#include "cursed_mirror_maker_data.inc.c"
 
 s32 cmm_count_stars(void) {
     s32 numStars = 0;
@@ -2697,7 +2708,7 @@ void update_painting() {
 }
 
 //if (gSramProbe != 0) {
-#include "src/game/cursed_mirror_maker_painting_frames.inc.c"
+#include "cursed_mirror_maker_painting_frames.inc.c"
 
 TCHAR cmm_file_name[30];
 FIL cmm_file;

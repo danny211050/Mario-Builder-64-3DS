@@ -1,5 +1,19 @@
 // coin.inc.c
 
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+#include "types.h"
+#include "object_helpers.h"
+// #include "model.h"
+
+// Stub out get_surface_normal
+void get_surface_normal(Vec3f, struct Surface *);
+
 struct ObjectHitbox sYellowCoinHitbox = {
     /* interactType:      */ INTERACT_COIN,
     /* downOffset:        */ 0,

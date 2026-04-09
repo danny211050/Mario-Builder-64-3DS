@@ -1,5 +1,12 @@
 // breakable_box.inc.c
 
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+
 //200 -> 256
 //128% increase
 

@@ -1,3 +1,8 @@
+#ifndef ONOFFBLOCK3_GEO_HEADER_H
+#define ONOFFBLOCK3_GEO_HEADER_H
+
+#include "PR/gbi.h"
+
 extern const GeoLayout onoffblock3_000_switch_opt1[];
 extern const GeoLayout onoffblock3_geo[];
 extern Lights1 onoffblock3_excla_blue_lights;
@@ -15,3 +20,5 @@ extern Gfx mat_revert_onoffblock3_excla_red[];
 extern Gfx onoffblock3_000_displaylist_mesh_layer_1[];
 extern Gfx onoffblock3_000_displaylist_mesh_layer_1_mat_override_excla_red_0[];
 extern Gfx onoffblock3_material_revert_render_settings[];
+
+#endif

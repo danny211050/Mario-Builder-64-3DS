@@ -1,7 +1,12 @@
 #ifndef TEXT_STRINGS_H
 #define TEXT_STRINGS_H
 
-#include "text_menu_strings.h"
+#include "text_menu_strings.h.in"
+
+// Stub out localization function for 3DS
+#ifndef _
+#define _(x) (x)
+#endif
 
 #define TEXT_VERSION _("MB64 ALPHA")
 

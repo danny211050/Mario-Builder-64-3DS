@@ -1,3 +1,8 @@
+#ifndef ICO_BADGE_HEADER_H
+#define ICO_BADGE_HEADER_H
+
+#include "PR/gbi.h"
+
 extern Lights1 ico_badge_f3d_material_lights;
 extern u8 ico_badge_b17_ci8[];
 extern u8 ico_badge_b17_ci8_pal_rgba16[];
@@ -6,3 +11,5 @@ extern Gfx ico_badge_Plane_mesh_tri_0[];
 extern Gfx mat_ico_badge_f3d_material[];
 extern Gfx mat_revert_ico_badge_f3d_material[];
 extern Gfx ico_badge_Plane_mesh[];
+
+#endif

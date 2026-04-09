@@ -5,7 +5,7 @@
 /*----------------------------------------------------------------------*/
 /*	nuPiSramInit  - Initialization of handle for SRAM		*/
 /*----------------------------------------------------------------------*/
-extern int nuPiInitSram();
+extern s32 nuPiInitSram(void);
 /*----------------------------------------------------------------------*/
 /*	nuPiReadWriteSram  - DMA transfers data to and from SRAM.	*/
 /*	IN:	addr	      SRAM address. 				*/

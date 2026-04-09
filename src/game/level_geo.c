@@ -8,7 +8,9 @@
 #include "camera.h"
 #include "envfx_snow.h"
 #include "level_geo.h"
+#ifndef _3DS
 #include "cursed_mirror_maker.h"
+#endif
 
 /**
  * Geo function that generates a displaylist for environment effects such as

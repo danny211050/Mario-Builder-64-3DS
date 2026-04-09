@@ -1,5 +1,12 @@
 // mr_i.inc.c
 
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+
 // this is actually the MrI particle loop function. piranha
 // plant code later on reuses this function.
 void bhv_piranha_particle_loop(void) {

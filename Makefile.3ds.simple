@@ -1,0 +1,82 @@
+# Simple Makefile.3ds - no recursive build, no VPATH complexity
+
+ifeq ($(strip $(DEVKITPRO)),)
+$(error "Please set DEVKITPRO in your environment")
+endif
+
+# Architecture flags for 3DS ARM11
+ARCH    :=  -march=armv6k -mtune=mpcore -mfloat-abi=hard -mtp=soft
+
+TARGET      :=   MarioBuilder64
+BUILD       :=   build_3ds
+
+SOURCES     :=  src/port/3ds \
+                src/game \
+                src/engine \
+                src/audio \
+                src/menu \
+                data \
+                levels \
+                actors \
+                textures
+
+INCLUDES    :=  include \
+                include/n64 \
+                src/game \
+                src/engine \
+                src/audio \
+                src/menu \
+                src/buffers \
+                src/libcart/include \
+                src/libcart/ff \
+                levels \
+                actors \
+                data \
+                src/port/3ds \
+                /opt/devkitpro/libctru/include
+
+CFLAGS      :=  -g -Wall -O2 -mword-relocations \
+                -fomit-frame-pointer -ffunction-sections -fdata-sections \
+                -D_3DS -DARM11 $(ARCH) \
+                $(foreach dir,$(INCLUDES),-I$(dir))
+
+LDFLAGS     :=  -g $(ARCH) -Wl,-Map,$(TARGET).map
+
+LIBS        :=  -lctru -lm -lcitro3d
+
+# Get all source files
+CFILES      :=  $(foreach dir,$(SOURCES),$(wildcard $(dir)/*.c))
+CFILES      :=  $(filter-out src/libcart/%,$(CFILES))
+CFILES      :=  $(filter-out src/game/cursed_mirror_maker.c,$(CFILES))
+CFILES      :=  $(filter-out src/game/cursed_mirror_maker_%.inc.c,$(CFILES))
+CFILES      :=  $(filter-out src/game/emutest.c,$(CFILES))
+CFILES      :=  $(filter-out src/game/fasttext.c,$(CFILES))
+OFILES      :=  $(CFILES:.c=.o)
+
+# Default target
+all: $(TARGET).3dsx
+
+# Compile C files
+%.o: %.c
+	@echo "  CC    $<"
+	@arm-none-eabi-gcc $(CFLAGS) -MMD -MP -c $< -o $@
+
+# Link
+$(TARGET).elf: $(OFILES)
+	@echo "  LINK  $@"
+	@arm-none-eabi-gcc $(LDFLAGS) $^ $(LIBS) -o $@
+
+# Create 3DSX
+$(TARGET).3dsx: $(TARGET).elf
+	@echo "  3DSX  $@"
+	@3dsxtool $< $@
+
+clean:
+	@rm -f $(OFILES) $(TARGET).elf $(TARGET).3dsx $(TARGET).map
+	@find . -name "*.d" -delete
+	@echo "Cleaned."
+
+.PHONY: all clean
+
+# Include dependencies
+-include $(CFILES:.c=.d)

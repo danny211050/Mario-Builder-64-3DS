@@ -344,7 +344,7 @@ void bhv_scuttlebug_loop(void) {
     cur_obj_move_standard(-50);
 
     if (revent_stop_enemies) {
-        vec3f_copy(&o->oPosX,&original_pos);
+        vec3f_copy((f32 *)&o->oPosX, (f32 *)&original_pos);
     }
 }
 

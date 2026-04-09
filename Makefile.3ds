@@ -1,0 +1,214 @@
+#---------------------------------------------------------------------------------
+# Makefile for Mario Builder 64 - 3DS Port - Updated
+#---------------------------------------------------------------------------------
+
+#---------------------------------------------------------------------------------
+# CONFIGURATION
+#---------------------------------------------------------------------------------
+TARGET		:=	mb64
+BUILD		:=	build_3ds
+SOURCES		:=	src/port/3ds \
+				src/game \
+				src/engine \
+				src/audio \
+				src/menu \
+				src/buffers \
+				src/boot \
+				src/goddard \
+				actors \
+				levels \
+				data \
+				text
+
+DATA		:=	data
+INCLUDES	:=	include src/port/3ds src include/ultra64 include/libc . include/libaudio
+GRAPHICS	:=	graphics
+GFXBUILD	:=	$(BUILD)
+ROMFS		:=	romfs
+APP_INFO	:=	appinfo.json
+
+#---------------------------------------------------------------------------------
+# DEVKITARM/DEVKITPRO CONFIGURATION
+#---------------------------------------------------------------------------------
+ifeq ($(strip $(DEVKITPRO)),)
+$(error "Please set DEVKITPRO in your environment. export DEVKITPRO=<path to devkitPro>")
+endif
+
+ifeq ($(strip $(DEVKITARM)),)
+$(error "Please set DEVKITARM in your environment. export DEVKITARM=<path to devkitARM>")
+endif
+
+TOPDIR ?= $(CURDIR)
+
+#---------------------------------------------------------------------------------
+# TOOLS
+#---------------------------------------------------------------------------------
+CC		:=	$(DEVKITARM)/bin/arm-none-eabi-gcc
+CXX		:=	$(DEVKITARM)/bin/arm-none-eabi-g++
+AS		:=	$(DEVKITARM)/bin/arm-none-eabi-as
+AR		:=	$(DEVKITARM)/bin/arm-none-eabi-ar
+OBJCOPY	:=	$(DEVKITARM)/bin/arm-none-eabi-objcopy
+LINK	:=	$(DEVKITARM)/bin/arm-none-eabi-gcc
+
+#---------------------------------------------------------------------------------
+# ARCHITECTURE CONFIGURATION
+#---------------------------------------------------------------------------------
+ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=hard -mtp=soft
+
+CFLAGS	:=	-g -Wall -O2 -mword-relocations \
+			-fomit-frame-pointer -ffunction-sections \
+			-fdata-sections \
+			-include $(CURDIR)/include/3ds_types_fix.h \
+			$(ARCH)
+
+# Include paths
+CFLAGS	+=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
+			-I$(CURDIR)/$(BUILD) \
+			-I$(DEVKITPRO)/libctru/include \
+			-I$(DEVKITPRO)/portlibs/3ds/include
+
+# 3DS and N64 compatibility defines
+CFLAGS	+=	-DARM11 -D_3DS -DTARGET_3DS=1 -D__3DS__ \
+			-DN64_VERSION_US=1 \
+			-DF3DEX_GBI_2=1 -DF3DEX_GBI_SHARED=1 \
+			-DF3DZEX_GBI_2=1 \
+			-DNO_ERRNO_H=1 -DNO_GZIP=1 \
+			-DBETTER_REVERB=1 \
+			-DEXT_AUDIO_BANK=1 \
+			-DSMALL_YIELD_DATA_SLOTS=1 \
+			-DNO_SEGMENTED_MEMORY=1 \
+			-DMIPS=1 \
+			-DTARGET_N64=0 \
+			-DUSE_GBI=1 \
+			-DTEXTURE_FIX=1 \
+			-DWIDESCREEN=1 \
+			-DPUPPYPRINT_DEBUG=0
+
+CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++17
+
+ASFLAGS	:=	-g $(ARCH) -I$(CURDIR)/include -I$(TOPDIR)/include
+
+LDFLAGS	=	-specs=3dsx.specs -g $(ARCH) \
+			-Wl,-Map,$(notdir $@).map \
+			-Wl,--gc-sections \
+			-Wl,--wrap,malloc \
+			-Wl,--wrap,free \
+			-Wl,--wrap,realloc
+
+# Libraries
+LIBS	:=	-lcitro3d -lctru -lm -lc
+
+#---------------------------------------------------------------------------------
+# PATHS
+#---------------------------------------------------------------------------------
+LIBDIRS	:=	$(CTRULIB) $(CITRO3D)
+
+#---------------------------------------------------------------------------------
+# Recursive build
+#---------------------------------------------------------------------------------
+export OUTPUT	:=	$(CURDIR)/$(TARGET)
+export TOPDIR	:=	$(CURDIR)
+
+export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) \
+					$(foreach dir,$(DATA),$(CURDIR)/$(dir)) \
+					$(CURDIR)/graphics
+
+export DEPSDIR	:=	$(CURDIR)/$(BUILD)
+
+CFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.c)))
+CPPFILES	:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.cpp)))
+SFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.s)))
+BINFILES	:=	$(filter-out capcom.s.disabled capcom.hvqm,$(foreach dir,$(DATA),$(notdir $(wildcard $(dir)/*.*))))
+
+ifeq ($(strip $(CPPFILES)),)
+	export LD	:=	$(CC)
+else
+	export LD	:=	$(CXX)
+endif
+
+export OFILES_BIN	:=	$(addsuffix .o,$(BINFILES))
+export OFILES_SRC	:=	$(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(SFILES:.s=.o)
+export OFILES 		:=	$(OFILES_BIN) $(OFILES_SRC)
+export HFILES_BIN	:=	$(addsuffix .h,$(subst .,_,$(BINFILES)))
+
+export LIBPATHS		:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib)
+
+export TOPDIR	:=	$(CURDIR)
+
+# Recursive build target
+all:
+	@echo Building 3DS port...
+	@mkdir -p $(BUILD)
+	@cp $(CURDIR)/include/macros.inc $(BUILD)/ 2>/dev/null || true
+	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile.3ds BUILD=$(BUILD) TOPDIR=$(CURDIR)
+
+banner:
+	@python3 tools/render_3d_banner.py 2>/dev/null || true
+
+clean:
+	@echo clean ...
+	@rm -fr $(BUILD) $(TARGET).3dsx $(TARGET).smdh $(TARGET).elf
+	@echo Cleaned build files.
+
+run: all
+	@echo Running on 3DS via network...
+	@3dslink $(TARGET).3dsx 2>/dev/null || echo "Install 3dslink to run via network"
+
+#---------------------------------------------------------------------------------
+# Target build rules (executed in build directory)
+#---------------------------------------------------------------------------------
+.PHONY: all clean
+
+all: $(OUTPUT).3dsx $(OUTPUT).smdh
+
+$(OUTPUT).3dsx: $(OUTPUT).elf
+	@echo Creating 3DSX...
+	@3dsxtool $< $@ --romfs=$(ROMFS)
+
+$(OUTPUT).smdh: $(APP_INFO)
+	@echo Creating SMDH...
+	@bannertool makesmdh -s "Mario Builder 64" -l "Mario Builder 64" -p "Rovertronic" -i build_3ds/icon.bmp -o $@ 2>/dev/null || \
+		echo "Warning: bannertool not found, creating dummy SMDH" && touch $@
+
+$(OUTPUT).elf: $(OFILES)
+	@echo Linking...
+	@$(LINK) $(LDFLAGS) $(OFILES) $(LIBPATHS) $(LIBS) -o $@
+
+#---------------------------------------------------------------------------------
+# Source compilation rules
+#---------------------------------------------------------------------------------
+%.c.o: %.c
+	@echo "  CC    $(notdir $<)"
+	@$(CC) -MMD -MP -MF $(DEPSDIR)/$*.d $(CFLAGS) -c $< -o $@
+
+%.cpp.o: %.cpp
+	@echo "  CXX   $(notdir $<)"
+	@$(CXX) -MMD -MP -MF $(DEPSDIR)/$*.d $(CXXFLAGS) -c $< -o $@
+
+%.s.o: %.s
+	@echo "  AS    $(notdir $<)"
+	@$(CC) $(ASFLAGS) -c $< -o $@
+
+#---------------------------------------------------------------------------------
+# Binary data rules
+#---------------------------------------------------------------------------------
+define bin2o
+	@echo "  BIN2O $(notdir $<)"
+	@$(bin2s) -a 64 -H $@.h $< | $(AS) -o $@
+endef
+
+%.bin.o: %.bin
+	$(call bin2o)
+
+%.hvqm.o: %.hvqm
+	$(call bin2o)
+
+%.raw.o: %.raw
+	$(call bin2o)
+
+#---------------------------------------------------------------------------------
+# Dependency tracking
+#---------------------------------------------------------------------------------
+-include $(DEPSDIR)/*.d
+
+#---------------------------------------------------------------------------------

@@ -1,3 +1,8 @@
+#ifndef B_HEADER_H
+#define B_HEADER_H
+
+#include "PR/gbi.h"
+
 extern u8 b_Checkmark2_ci8[];
 extern u8 b_Checkmark2_ci8_pal_rgba16[];
 extern u8 b_save2_ci8[];
@@ -684,3 +689,5 @@ extern Gfx mat_revert_b_btn_cobie[];
 extern Gfx mat_b_btn_conveyor[];
 extern Gfx mat_revert_b_btn_conveyor[];
 extern Gfx b_btn_mesh[];
+
+#endif

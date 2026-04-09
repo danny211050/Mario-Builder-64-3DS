@@ -1,3 +1,8 @@
+#ifndef LOOPINGP_GEO_HEADER_H
+#define LOOPINGP_GEO_HEADER_H
+
+#include "PR/gbi.h"
+
 extern const GeoLayout loopingp_geo[];
 extern Lights1 loopingp_Moveplat2_lights;
 extern Lights1 loopingp_Moveplat1_lights;
@@ -15,3 +20,5 @@ extern Gfx mat_loopingp_Moveplat1[];
 extern Gfx mat_revert_loopingp_Moveplat1[];
 extern Gfx loopingp_blaster_001_mesh_layer_1[];
 extern Gfx loopingp_material_revert_render_settings[];
+
+#endif

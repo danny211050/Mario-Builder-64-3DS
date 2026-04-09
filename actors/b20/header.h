@@ -1,3 +1,8 @@
+#ifndef B20_HEADER_H
+#define B20_HEADER_H
+
+#include "PR/gbi.h"
+
 extern Lights1 b20_f3d_material_lights;
 extern u8 b20_refined_slowfall_badge_ci8[];
 extern u8 b20_refined_slowfall_badge_ci8_pal_rgba16[];
@@ -6,3 +11,5 @@ extern Gfx b20_Plane_001_mesh_tri_0[];
 extern Gfx mat_b20_f3d_material[];
 extern Gfx mat_revert_b20_f3d_material[];
 extern Gfx b20_Plane_001_mesh[];
+
+#endif

@@ -2,7 +2,7 @@
 #define MENU_HEADER_H
 
 #include "types.h"
-#include "src/game/game_init.h"
+#include "game_init.h"
 
 // geo
 // extern const GeoLayout geo_menu_mario_save_button[];
@@ -50,24 +50,24 @@ extern const u8 eu_course_strings_de_table[];
 extern const LevelScript level_main_menu_entry_file_select[];
 extern const LevelScript level_main_menu_entry_act_select[];
 
-#include "levels/menu/replaced/geo_header.h"
+#include "replaced/geo_header.h"
 
-#include "levels/menu/mm_btn2/header.h"
+#include "mm_btn2/header.h"
 
-#include "levels/menu/mm_btn_sm/header.h"
+#include "mm_btn_sm/header.h"
 
-#include "levels/menu/mbg/geo_header.h"
+#include "mbg/geo_header.h"
 
-#include "levels/menu/mm_btn_lg/header.h"
+#include "mm_btn_lg/header.h"
 
-#include "levels/menu/mptng/header.h"
+#include "mptng/header.h"
 
-#include "levels/menu/pl_scard/header.h"
-#include "levels/menu/rovert_logo/header.h"
+#include "pl_scard/header.h"
+#include "rovert_logo/header.h"
 
-#include "levels/menu/bigpainting/header.h"
+#include "bigpainting/header.h"
 
-extern FILINFO cmm_level_entries[MAX_FILES];
+// extern FILINFO cmm_level_entries[MAX_FILES]; // libcart-specific, not available on 3DS
 extern u16 cmm_level_entry_piktcher[MAX_FILES][64][64];
 
 

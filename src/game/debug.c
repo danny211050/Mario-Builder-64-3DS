@@ -2,9 +2,9 @@
 
 #include "behavior_data.h"
 #include "debug.h"
-#include "engine/behavior_script.h"
-#include "engine/surface_collision.h"
-#include "engine/math_util.h"
+#include "behavior_script.h"
+#include "surface_collision.h"
+#include "math_util.h"
 #include "game_init.h"
 #include "main.h"
 #include "object_constants.h"

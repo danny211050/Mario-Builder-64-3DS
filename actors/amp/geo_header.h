@@ -1,3 +1,8 @@
+#ifndef AMP_GEO_HEADER_H
+#define AMP_GEO_HEADER_H
+
+#include "PR/gbi.h"
+
 extern const GeoLayout amp_eletricity_geolayout[];
 extern const GeoLayout dAmpGeo[];
 extern u8 amp_amp_mouth_rgba16[];
@@ -18,3 +23,5 @@ extern Gfx amp_switch_option_eletricity_001_mesh_layer_4[];
 extern Gfx amp_switch_option_eletricity_002_mesh_layer_4[];
 extern Gfx amp_switch_option_eletricity_003_mesh_layer_4[];
 extern Gfx amp_material_revert_render_settings[];
+
+#endif

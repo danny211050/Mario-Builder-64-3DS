@@ -2,7 +2,7 @@
 #define BUFFERS_H
 
 #include <PR/ultratypes.h>
-#include <hvqm2dec.h>
+#include "hvqm/hvqm2dec.h"
 
 #include "game/save_file.h"
 #include "game/game_init.h"

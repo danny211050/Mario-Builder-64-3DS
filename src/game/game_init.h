@@ -13,9 +13,12 @@
 #define MARIO_ANIMS_POOL_SIZE 0x4000
 #define DEMO_INPUTS_POOL_SIZE 0x800
 
-#include "libcart/include/cart.h"
-#include "libcart/ff/ff.h"
-#include "cursed_mirror_maker.h"
+// #include "libcart/include/cart.h" // Not used on 3DS
+#include "ff.h" // Needed for FRESULT type
+// #include "cursed_mirror_maker.h" // Not used on 3DS
+
+// FRESULT is defined in libcart/ff/ff.h
+typedef char TCHAR;
 
 struct GfxPool {
     Gfx buffer[GFX_POOL_SIZE];

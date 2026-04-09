@@ -1,3 +1,8 @@
+#ifndef SPAWN_GEO_HEADER_H
+#define SPAWN_GEO_HEADER_H
+
+#include "PR/gbi.h"
+
 extern const GeoLayout spawn_geo[];
 extern Lights1 spawn_red_lights;
 extern u8 spawn_mariospawn_rgba32[];
@@ -10,3 +15,5 @@ extern Gfx mat_spawn_spawnlocation[];
 extern Gfx spawn_root_mesh_layer_1[];
 extern Gfx spawn_m_mesh_layer_5[];
 extern Gfx spawn_material_revert_render_settings[];
+
+#endif

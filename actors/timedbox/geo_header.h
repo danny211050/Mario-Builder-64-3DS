@@ -1,3 +1,8 @@
+#ifndef TIMEDBOX_GEO_HEADER_H
+#define TIMEDBOX_GEO_HEADER_H
+
+#include "PR/gbi.h"
+
 extern const GeoLayout timedbox_geo[];
 extern Lights1 timedbox_cbox_lights;
 extern u8 timedbox_solid_ci8[];
@@ -8,3 +13,5 @@ extern Gfx mat_timedbox_cbox[];
 extern Gfx mat_revert_timedbox_cbox[];
 extern Gfx timedbox_hollowbox_mesh_layer_4[];
 extern Gfx timedbox_material_revert_render_settings[];
+
+#endif

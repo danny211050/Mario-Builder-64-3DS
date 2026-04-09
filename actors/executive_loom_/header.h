@@ -1,3 +1,8 @@
+#ifndef EXECUTIVE_LOOM_HEADER_H
+#define EXECUTIVE_LOOM_HEADER_H
+
+#include "PR/gbi.h"
+
 extern Lights1 executive_loom__Audience_layer1_lights;
 extern u8 executive_loom__Audience_ia8[];
 extern u8 executive_loom__Static2_i8[];
@@ -16,3 +21,5 @@ extern Gfx mat_revert_executive_loom__Static_layer1[];
 extern Gfx mat_executive_loom__fountain[];
 extern Gfx mat_revert_executive_loom__fountain[];
 extern Gfx executive_loom__circle_mesh[];
+
+#endif

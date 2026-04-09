@@ -1,5 +1,12 @@
 // heave_ho.inc.c
 
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+
 s16 sHeaveHoTimings[][2] = {
     {  30, 0 },
     {  42, 1 },

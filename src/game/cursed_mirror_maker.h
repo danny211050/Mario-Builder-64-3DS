@@ -1,6 +1,9 @@
 #ifndef cursed_mirror_maker_h
 #define cursed_mirror_maker_h
-#include "libcart/ff/ff.h"
+// #include "libcart/ff/ff.h" // Not used on 3DS
+
+// Stub out libcart types for 3DS
+typedef char TCHAR;
 
 #define CMM_TILE_POOL_SIZE 10000
 #define CMM_GFX_SIZE 20000

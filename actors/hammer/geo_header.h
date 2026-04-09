@@ -1,3 +1,8 @@
+#ifndef HAMMER_GEO_HEADER_H
+#define HAMMER_GEO_HEADER_H
+
+#include "PR/gbi.h"
+
 extern const GeoLayout hammer_geo[];
 extern Lights1 hammer_Handle_001_lights;
 extern Lights1 hammer_Hard_001_lights;
@@ -9,3 +14,5 @@ extern Gfx mat_hammer_Handle_001[];
 extern Gfx mat_hammer_Hard_001[];
 extern Gfx hammer_Cylinder_mesh_layer_1[];
 extern Gfx hammer_material_revert_render_settings[];
+
+#endif

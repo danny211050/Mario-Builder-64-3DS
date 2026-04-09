@@ -1,3 +1,8 @@
+#ifndef BOBOMB_GEO_HEADER_H
+#define BOBOMB_GEO_HEADER_H
+
+#include "PR/gbi.h"
+
 extern const GeoLayout bobomb_Eyes_blinking[];
 extern const GeoLayout black_bobomb_geo[];
 extern const GeoLayout bobomb_buddy_geo[];
@@ -24,3 +29,5 @@ extern Gfx bobomb_eyes_blinking_switch_option_Eyes_blinking_mesh_layer_4[];
 extern Gfx bobomb_left_foot_mesh_layer_1[];
 extern Gfx bobomb_right_foot_mesh_layer_1[];
 extern Gfx bobomb_material_revert_render_settings[];
+
+#endif

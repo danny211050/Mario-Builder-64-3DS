@@ -1,3 +1,8 @@
+#ifndef SHOPSELECT_HEADER_H
+#define SHOPSELECT_HEADER_H
+
+#include "PR/gbi.h"
+
 extern Lights1 shopselect_Check_lights;
 extern u8 shopselect_check_ci4[];
 extern u8 shopselect_check_ci4_pal_rgba16[];
@@ -6,3 +11,5 @@ extern Gfx shopselect_Plane_002_mesh_tri_0[];
 extern Gfx mat_shopselect_Check[];
 extern Gfx mat_revert_shopselect_Check[];
 extern Gfx shopselect_Plane_002_mesh[];
+
+#endif

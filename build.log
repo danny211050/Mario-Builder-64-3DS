@@ -1,0 +1,299 @@
+  CC    src/port/3ds/ai_3ds.c
+In file included from src/port/3ds/platform_3ds.h:11,
+                 from src/port/3ds/ai_3ds.h:4,
+                 from src/port/3ds/ai_3ds.c:2:
+/opt/devkitpro/libctru/include/3ds.h:12:2: warning: #warning "Please update your Makefile and replace -DARM11 -D_3DS with -D__3DS__" [-Wcpp]
+   12 | #warning "Please update your Makefile and replace -DARM11 -D_3DS with -D__3DS__"
+      |  ^~~~~~~
+src/port/3ds/ai_3ds.c:209:11: warning: 'g_music_volume' defined but not used [-Wunused-variable]
+  209 | static u8 g_music_volume = 255;
+      |           ^~~~~~~~~~~~~~
+  CC    src/port/3ds/asset_loader.c
+In file included from src/port/3ds/platform_3ds.h:11,
+                 from src/port/3ds/asset_loader.h:5,
+                 from src/port/3ds/asset_loader.c:1:
+/opt/devkitpro/libctru/include/3ds.h:12:2: warning: #warning "Please update your Makefile and replace -DARM11 -D_3DS with -D__3DS__" [-Wcpp]
+   12 | #warning "Please update your Makefile and replace -DARM11 -D_3DS with -D__3DS__"
+      |  ^~~~~~~
+src/port/3ds/asset_loader.c: In function 'asset_loader_load':
+src/port/3ds/asset_loader.c:76:32: warning: format '%d' expects argument of type 'int', but argument 3 has type 'u32' {aka 'long unsigned int'} [-Wformat=]
+   76 |     printf("Loaded asset: %s (%d bytes)\n", path, asset->size);
+      |                               ~^                  ~~~~~~~~~~~
+      |                                |                       |
+      |                                int                     u32 {aka long unsigned int}
+      |                               %ld
+src/port/3ds/asset_loader.c: In function 'asset_loader_load_segment':
+src/port/3ds/asset_loader.c:228:33: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32' {aka 'long unsigned int'} [-Wformat=]
+  228 |         printf("Loaded segment %d from %s (%d bytes)\n", segment, path, size);
+      |                                ~^                        ~~~~~~~
+      |                                 |                        |
+      |                                 int                      u32 {aka long unsigned int}
+      |                                %ld
+src/port/3ds/asset_loader.c:228:45: warning: format '%d' expects argument of type 'int', but argument 4 has type 'u32' {aka 'long unsigned int'} [-Wformat=]
+  228 |         printf("Loaded segment %d from %s (%d bytes)\n", segment, path, size);
+      |                                            ~^                           ~~~~
+      |                                             |                           |
+      |                                             int                         u32 {aka long unsigned int}
+      |                                            %ld
+  CC    src/port/3ds/audio_3ds.c
+In file included from src/port/3ds/audio_3ds.h:4,
+                 from src/port/3ds/audio_3ds.c:1:
+/opt/devkitpro/libctru/include/3ds.h:12:2: warning: #warning "Please update your Makefile and replace -DARM11 -D_3DS with -D__3DS__" [-Wcpp]
+   12 | #warning "Please update your Makefile and replace -DARM11 -D_3DS with -D__3DS__"
+      |  ^~~~~~~
+  CC    src/port/3ds/game_3ds.c
+In file included from src/port/3ds/platform_3ds.h:11,
+                 from src/port/3ds/game_3ds.h:5,
+                 from src/port/3ds/game_3ds.c:1:
+/opt/devkitpro/libctru/include/3ds.h:12:2: warning: #warning "Please update your Makefile and replace -DARM11 -D_3DS with -D__3DS__" [-Wcpp]
+   12 | #warning "Please update your Makefile and replace -DARM11 -D_3DS with -D__3DS__"
+      |  ^~~~~~~
+src/port/3ds/game_3ds.c: In function 'game_3ds_process_n64_input':
+src/port/3ds/game_3ds.c:164:9: warning: unused variable 'n64_buttons' [-Wunused-variable]
+  164 |     u32 n64_buttons = input_3ds_get_n64_buttons();
+      |         ^~~~~~~~~~~
+src/port/3ds/game_3ds.c: In function 'game_3ds_render_top_screen':
+src/port/3ds/game_3ds.c:191:9: warning: unused variable 'clearColor' [-Wunused-variable]
+  191 |     u32 clearColor = 0xFF6495ED; // Sky blue
+      |         ^~~~~~~~~~
+src/port/3ds/game_3ds.c: In function 'game_3ds_render_bottom_screen':
+src/port/3ds/game_3ds.c:218:9: warning: unused variable 'clearColor' [-Wunused-variable]
+  218 |     u32 clearColor = 0xFF202020; // Dark grey
+      |         ^~~~~~~~~~
+  CC    src/port/3ds/gbi_3ds.c
+In file included from src/port/3ds/gbi_3ds.h:4,
+                 from src/port/3ds/gbi_3ds.c:1:
+/opt/devkitpro/libctru/include/3ds.h:12:2: warning: #warning "Please update your Makefile and replace -DARM11 -D_3DS with -D__3DS__" [-Wcpp]
+   12 | #warning "Please update your Makefile and replace -DARM11 -D_3DS with -D__3DS__"
+      |  ^~~~~~~
+src/port/3ds/gbi_3ds.c: In function 'gbi_3ds_setothermode_h':
+src/port/3ds/gbi_3ds.c:281:9: warning: unused variable 'len' [-Wunused-variable]
+  281 |     u32 len = (cmd->w0 >> 0) & 0xFF;
+      |         ^~~
+src/port/3ds/gbi_3ds.c:280:9: warning: unused variable 'shift' [-Wunused-variable]
+  280 |     u32 shift = (cmd->w0 >> 8) & 0xFF;
+      |         ^~~~~
+src/port/3ds/gbi_3ds.c: In function 'gbi_3ds_setothermode_l':
+src/port/3ds/gbi_3ds.c:291:9: warning: unused variable 'len' [-Wunused-variable]
+  291 |     u32 len = (cmd->w0 >> 0) & 0xFF;
+      |         ^~~
+src/port/3ds/gbi_3ds.c:290:9: warning: unused variable 'shift' [-Wunused-variable]
+  290 |     u32 shift = (cmd->w0 >> 8) & 0xFF;
+      |         ^~~~~
+src/port/3ds/gbi_3ds.c: In function 'gbi_3ds_movemem':
+src/port/3ds/gbi_3ds.c:318:11: warning: unused variable 'src' [-Wunused-variable]
+  318 |     void *src = (void *)cmd->w1;
+      |           ^~~
+src/port/3ds/gbi_3ds.c:317:9: warning: unused variable 'offset' [-Wunused-variable]
+  317 |     u32 offset = cmd->w0 & 0xFFFF;
+      |         ^~~~~~
+src/port/3ds/gbi_3ds.c: In function 'gbi_3ds_moveword':
+src/port/3ds/gbi_3ds.c:338:9: warning: unused variable 'data' [-Wunused-variable]
+  338 |     u32 data = cmd->w1;
+      |         ^~~~
+src/port/3ds/gbi_3ds.c:337:9: warning: unused variable 'offset' [-Wunused-variable]
+  337 |     u32 offset = cmd->w0 & 0xFFFF;
+      |         ^~~~~~
+src/port/3ds/gbi_3ds.c: In function 'gbi_3ds_setprimcolor':
+src/port/3ds/gbi_3ds.c:354:9: warning: unused variable 'prim' [-Wunused-variable]
+  354 |     u32 prim = cmd->w0 & 0xFF;
+      |         ^~~~
+src/port/3ds/gbi_3ds.c:353:9: warning: unused variable 'lod' [-Wunused-variable]
+  353 |     u32 lod = (cmd->w0 >> 8) & 0xFF;
+      |         ^~~
+src/port/3ds/gbi_3ds.c: In function 'gbi_3ds_settile':
+src/port/3ds/gbi_3ds.c:404:9: warning: unused variable 'shftt' [-Wunused-variable]
+  404 |     u32 shftt = (cmd->w1 >> 0) & 0xF;
+      |         ^~~~~
+src/port/3ds/gbi_3ds.c:403:9: warning: unused variable 'maskt' [-Wunused-variable]
+  403 |     u32 maskt = (cmd->w1 >> 4) & 0xF;
+      |         ^~~~~
+src/port/3ds/gbi_3ds.c:402:9: warning: unused variable 'cms' [-Wunused-variable]
+  402 |     u32 cms = (cmd->w1 >> 8) & 3;
+      |         ^~~
+src/port/3ds/gbi_3ds.c:401:9: warning: unused variable 'shfts' [-Wunused-variable]
+  401 |     u32 shfts = (cmd->w1 >> 10) & 0xF;
+      |         ^~~~~
+src/port/3ds/gbi_3ds.c:400:9: warning: unused variable 'masks' [-Wunused-variable]
+  400 |     u32 masks = (cmd->w1 >> 14) & 0xF;
+      |         ^~~~~
+src/port/3ds/gbi_3ds.c:399:9: warning: unused variable 'cmt' [-Wunused-variable]
+  399 |     u32 cmt = (cmd->w1 >> 18) & 3;
+      |         ^~~
+src/port/3ds/gbi_3ds.c:398:9: warning: unused variable 'palette' [-Wunused-variable]
+  398 |     u32 palette = (cmd->w1 >> 20) & 0xF;
+      |         ^~~~~~~
+src/port/3ds/gbi_3ds.c:396:9: warning: unused variable 'tmem' [-Wunused-variable]
+  396 |     u32 tmem = (cmd->w0 >> 0) & 0x1FF;
+      |         ^~~~
+src/port/3ds/gbi_3ds.c:395:9: warning: unused variable 'line' [-Wunused-variable]
+  395 |     u32 line = (cmd->w0 >> 9) & 0x1FF;
+      |         ^~~~
+src/port/3ds/gbi_3ds.c:394:9: warning: unused variable 'siz' [-Wunused-variable]
+  394 |     u32 siz = (cmd->w0 >> 19) & 3;
+      |         ^~~
+src/port/3ds/gbi_3ds.c:393:9: warning: unused variable 'fmt' [-Wunused-variable]
+  393 |     u32 fmt = (cmd->w0 >> 21) & 7;
+      |         ^~~
+src/port/3ds/gbi_3ds.c: In function 'gbi_3ds_settilesize':
+src/port/3ds/gbi_3ds.c:427:9: warning: unused variable 'height' [-Wunused-variable]
+  427 |     u32 height = ((lrt - ult) >> 2) + 1;
+      |         ^~~~~~
+src/port/3ds/gbi_3ds.c:426:9: warning: unused variable 'width' [-Wunused-variable]
+  426 |     u32 width = ((lrs - uls) >> 2) + 1;
+      |         ^~~~~
+src/port/3ds/gbi_3ds.c:419:9: warning: unused variable 'tile' [-Wunused-variable]
+  419 |     u32 tile = (cmd->w1 >> 24) & 7;
+      |         ^~~~
+src/port/3ds/gbi_3ds.c: In function 'gbi_3ds_loadblock':
+src/port/3ds/gbi_3ds.c:436:9: warning: unused variable 'dxt' [-Wunused-variable]
+  436 |     u32 dxt = (cmd->w1 >> 0) & 0xFFF;
+      |         ^~~
+src/port/3ds/gbi_3ds.c:435:9: warning: unused variable 'lrs' [-Wunused-variable]
+  435 |     u32 lrs = (cmd->w1 >> 12) & 0xFFF;
+      |         ^~~
+src/port/3ds/gbi_3ds.c:434:9: warning: unused variable 'ult' [-Wunused-variable]
+  434 |     u32 ult = (cmd->w0 >> 0) & 0xFFF;
+      |         ^~~
+src/port/3ds/gbi_3ds.c:433:9: warning: unused variable 'uls' [-Wunused-variable]
+  433 |     u32 uls = (cmd->w0 >> 12) & 0xFFF;
+      |         ^~~
+src/port/3ds/gbi_3ds.c:432:9: warning: unused variable 'tile' [-Wunused-variable]
+  432 |     u32 tile = (cmd->w1 >> 24) & 7;
+      |         ^~~~
+src/port/3ds/gbi_3ds.c: In function 'gbi_3ds_loadtlut':
+src/port/3ds/gbi_3ds.c:442:9: warning: unused variable 'count' [-Wunused-variable]
+  442 |     u32 count = (cmd->w1 >> 14) & 0x3FF;
+      |         ^~~~~
+src/port/3ds/gbi_3ds.c:441:9: warning: unused variable 'tile' [-Wunused-variable]
+  441 |     u32 tile = (cmd->w1 >> 24) & 7;
+      |         ^~~~
+src/port/3ds/gbi_3ds.c: In function 'gbi_3ds_mtx':
+src/port/3ds/gbi_3ds.c:203:36: warning: 'mtx' may be used uninitialized [-Wmaybe-uninitialized]
+  203 |             g_gbi_state.projection = mtx;
+      |             ~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+src/port/3ds/gbi_3ds.c:196:13: note: 'mtx' declared here
+  196 |     C3D_Mtx mtx;
+      |             ^~~
+src/port/3ds/gbi_3ds.c:205:13: warning: 'mtx' may be used uninitialized [-Wmaybe-uninitialized]
+  205 |             Mtx_Multiply(&g_gbi_state.projection, &g_gbi_state.projection, &mtx);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /opt/devkitpro/libctru/include/citro3d.h:13,
+                 from src/port/3ds/gbi_3ds.h:5:
+/opt/devkitpro/libctru/include/c3d/maths.h:367:6: note: by argument 3 of type 'const C3D_Mtx *' to 'Mtx_Multiply' declared here
+  367 | void Mtx_Multiply(C3D_Mtx* out, const C3D_Mtx* a, const C3D_Mtx* b);
+      |      ^~~~~~~~~~~~
+src/port/3ds/gbi_3ds.c:196:13: note: 'mtx' declared here
+  196 |     C3D_Mtx mtx;
+      |             ^~~
+src/port/3ds/gbi_3ds.c:210:35: warning: 'mtx' may be used uninitialized [-Wmaybe-uninitialized]
+  210 |             g_gbi_state.modelview = mtx;
+      |             ~~~~~~~~~~~~~~~~~~~~~~^~~~~
+src/port/3ds/gbi_3ds.c:196:13: note: 'mtx' declared here
+  196 |     C3D_Mtx mtx;
+      |             ^~~
+src/port/3ds/gbi_3ds.c:212:13: warning: 'mtx' may be used uninitialized [-Wmaybe-uninitialized]
+  212 |             Mtx_Multiply(&g_gbi_state.modelview, &g_gbi_state.modelview, &mtx);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/devkitpro/libctru/include/c3d/maths.h:367:6: note: by argument 3 of type 'const C3D_Mtx *' to 'Mtx_Multiply' declared here
+  367 | void Mtx_Multiply(C3D_Mtx* out, const C3D_Mtx* a, const C3D_Mtx* b);
+      |      ^~~~~~~~~~~~
+src/port/3ds/gbi_3ds.c:196:13: note: 'mtx' declared here
+  196 |     C3D_Mtx mtx;
+      |             ^~~
+  CC    src/port/3ds/gfx_3ds.c
+In file included from src/port/3ds/gfx_3ds.h:4,
+                 from src/port/3ds/gfx_3ds.c:1:
+/opt/devkitpro/libctru/include/3ds.h:12:2: warning: #warning "Please update your Makefile and replace -DARM11 -D_3DS with -D__3DS__" [-Wcpp]
+   12 | #warning "Please update your Makefile and replace -DARM11 -D_3DS with -D__3DS__"
+      |  ^~~~~~~
+src/port/3ds/gfx_3ds.c: In function 'gfx_3ds_init':
+src/port/3ds/gfx_3ds.c:45:9: error: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   45 |         printf("Warning: Could not parse vertex shader\n");
+      |         ^~~~~~
+src/port/3ds/gfx_3ds.c:2:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+    1 | #include "gfx_3ds.h"
+  +++ |+#include <stdio.h>
+    2 | #include <string.h>
+src/port/3ds/gfx_3ds.c:45:9: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   45 |         printf("Warning: Could not parse vertex shader\n");
+      |         ^~~~~~
+src/port/3ds/gfx_3ds.c:45:9: note: include '<stdio.h>' or provide a declaration of 'printf'
+src/port/3ds/gfx_3ds.c:72:5: error: implicit declaration of function 'TexEnv_Init'; did you mean 'C3D_TexEnvInit'? [-Wimplicit-function-declaration]
+   72 |     TexEnv_Init(env);
+      |     ^~~~~~~~~~~
+      |     C3D_TexEnvInit
+src/port/3ds/gfx_3ds.c:73:5: error: implicit declaration of function 'TexEnv_SetSrc' [-Wimplicit-function-declaration]
+   73 |     TexEnv_SetSrc(env, C3D_Both, GPU_TEXTURE0, GPU_PRIMARY_COLOR, 0);
+      |     ^~~~~~~~~~~~~
+src/port/3ds/gfx_3ds.c:74:5: error: implicit declaration of function 'TexEnv_SetFunc' [-Wimplicit-function-declaration]
+   74 |     TexEnv_SetFunc(env, C3D_Both, GPU_MODULATE);
+      |     ^~~~~~~~~~~~~~
+src/port/3ds/gfx_3ds.c: In function 'gfx_3ds_run_dl':
+src/port/3ds/gfx_3ds.c:110:13: error: duplicate case value
+  110 |             case 0xBF: // G_TRI1, G_TRI2
+      |             ^~~~
+src/port/3ds/gfx_3ds.c:101:13: note: previously used here
+  101 |             case 0xBF: // G_NOOP
+      |             ^~~~
+src/port/3ds/gfx_3ds.c: At top level:
+src/port/3ds/gfx_3ds.c:157:24: error: unknown type name 'f32'; did you mean 's32'?
+  157 | void gfx_3ds_translate(f32 x, f32 y, f32 z) {
+      |                        ^~~
+      |                        s32
+src/port/3ds/gfx_3ds.c:157:31: error: unknown type name 'f32'; did you mean 's32'?
+  157 | void gfx_3ds_translate(f32 x, f32 y, f32 z) {
+      |                               ^~~
+      |                               s32
+src/port/3ds/gfx_3ds.c:157:38: error: unknown type name 'f32'; did you mean 's32'?
+  157 | void gfx_3ds_translate(f32 x, f32 y, f32 z) {
+      |                                      ^~~
+      |                                      s32
+src/port/3ds/gfx_3ds.c:164:20: error: unknown type name 'f32'; did you mean 's32'?
+  164 | void gfx_3ds_scale(f32 x, f32 y, f32 z) {
+      |                    ^~~
+      |                    s32
+src/port/3ds/gfx_3ds.c:164:27: error: unknown type name 'f32'; did you mean 's32'?
+  164 | void gfx_3ds_scale(f32 x, f32 y, f32 z) {
+      |                           ^~~
+      |                           s32
+src/port/3ds/gfx_3ds.c:164:34: error: unknown type name 'f32'; did you mean 's32'?
+  164 | void gfx_3ds_scale(f32 x, f32 y, f32 z) {
+      |                                  ^~~
+      |                                  s32
+src/port/3ds/gfx_3ds.c:171:23: error: unknown type name 'f32'; did you mean 's32'?
+  171 | void gfx_3ds_rotate_x(f32 angle) {
+      |                       ^~~
+      |                       s32
+src/port/3ds/gfx_3ds.c:178:23: error: unknown type name 'f32'; did you mean 's32'?
+  178 | void gfx_3ds_rotate_y(f32 angle) {
+      |                       ^~~
+      |                       s32
+src/port/3ds/gfx_3ds.c:185:23: error: unknown type name 'f32'; did you mean 's32'?
+  185 | void gfx_3ds_rotate_z(f32 angle) {
+      |                       ^~~
+      |                       s32
+src/port/3ds/gfx_3ds.c: In function 'gfx_3ds_load_texture':
+src/port/3ds/gfx_3ds.c:194:9: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+  194 |         printf("Error: Too many textures\n");
+      |         ^~~~~~
+src/port/3ds/gfx_3ds.c:194:9: note: include '<stdio.h>' or provide a declaration of 'printf'
+src/port/3ds/gfx_3ds.c:201:5: error: unknown type name 'GPU_TEXFMT'; did you mean 'GPU_TEXFACE'?
+  201 |     GPU_TEXFMT pica_fmt;
+      |     ^~~~~~~~~~
+      |     GPU_TEXFACE
+src/port/3ds/gfx_3ds.c: In function 'gfx_3ds_clear':
+src/port/3ds/gfx_3ds.c:292:27: error: implicit declaration of function 'C3D_GetRenderTarget' [-Wimplicit-function-declaration]
+  292 |     C3D_RenderTargetClear(C3D_GetRenderTarget(), C3D_CLEAR_ALL, color, 0);
+      |                           ^~~~~~~~~~~~~~~~~~~
+src/port/3ds/gfx_3ds.c:292:27: error: passing argument 1 of 'C3D_RenderTargetClear' makes pointer from integer without a cast [-Wint-conversion]
+  292 |     C3D_RenderTargetClear(C3D_GetRenderTarget(), C3D_CLEAR_ALL, color, 0);
+      |                           ^~~~~~~~~~~~~~~~~~~~~
+      |                           |
+      |                           int
+In file included from /opt/devkitpro/libctru/include/citro3d.h:30,
+                 from src/port/3ds/gfx_3ds.h:5:
+/opt/devkitpro/libctru/include/c3d/renderqueue.h:72:60: note: expected 'C3D_RenderTarget *' {aka 'struct C3D_RenderTarget_tag *'} but argument is of type 'int'
+   72 | static inline void C3D_RenderTargetClear(C3D_RenderTarget* target, C3D_ClearBits clearBits, u32 clearColor, u32 clearDepth)
+      |                                          ~~~~~~~~~~~~~~~~~~^~~~~~
+make: *** [src/port/3ds/gfx_3ds.o] Error 1

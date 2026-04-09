@@ -2,10 +2,10 @@
 #include <PR/os_internal_error.h>
 #include <stdarg.h>
 #include <string.h>
-#include "buffers/framebuffers.h"
+#include "framebuffers.h"
 #include "types.h"
 #include "puppyprint.h"
-#include "audio/external.h"
+#include "external.h"
 #include "farcall.h"
 #include "game_init.h"
 #include "main.h"
@@ -16,6 +16,18 @@
 #include "sm64.h"
 
 #include "printf.h"
+
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+// Stub out N64-specific functions for 3DS
+void osSetTime(OSTime time) {}
+void osViBlack(u8 active) {}
+OSThread *__osGetCurrFaultedThread(void) { return NULL; }
 
 enum crashPages {
     PAGE_CONTEXT,
@@ -39,7 +51,8 @@ u8 gCrashScreenCharToGlyph[128] = {
 
 // A height of seven pixels for each Character * nine rows of characters + one row unused.
 u32 gCrashScreenFont[7 * 9 + 1] = {
-    #include "textures/crash_custom/crash_screen_font.ia1.inc.c"
+    // #include "textures/crash_custom/crash_screen_font.ia1.inc.c"
+    0
 };
 
 u8 crashPage = 0;
@@ -192,45 +205,9 @@ void crash_screen_print_fpcsr(u32 fpcsr) {
 }
 
 void draw_crash_context(OSThread *thread, s32 cause) {
-    __OSThreadContext *tc = &thread->context;
+    // Stubbed out for 3DS - N64-specific thread context not available
     crash_screen_draw_rect(15, 20, 270, 210);
-    crash_screen_print(30, 20, "THREAD:%d  (%s)", thread->id, gCauseDesc[cause]);
-    crash_screen_print(30, 30, "PC:%08XH   SR:%08XH   VA:%08XH", tc->pc, tc->sr, tc->badvaddr);
-    osWritebackDCacheAll();
-    crash_screen_draw_rect(15, 45, 270, 185);
-    if ((u32)parse_map != MAP_PARSER_ADDRESS) {
-        char *fname = parse_map(tc->pc);
-        crash_screen_print(30, 40, "CRASH AT: %s", fname == NULL ? "UNKNOWN" : fname);
-    }
-    crash_screen_print(30,  50, "AT:%08XH   V0:%08XH   V1:%08XH", (u32) tc->at, (u32) tc->v0, (u32) tc->v1);
-    crash_screen_print(30,  60, "A0:%08XH   A1:%08XH   A2:%08XH", (u32) tc->a0, (u32) tc->a1, (u32) tc->a2);
-    crash_screen_print(30,  70, "A3:%08XH   T0:%08XH   T1:%08XH", (u32) tc->a3, (u32) tc->t0, (u32) tc->t1);
-    crash_screen_print(30,  80, "T2:%08XH   T3:%08XH   T4:%08XH", (u32) tc->t2, (u32) tc->t3, (u32) tc->t4);
-    crash_screen_print(30,  90, "T5:%08XH   T6:%08XH   T7:%08XH", (u32) tc->t5, (u32) tc->t6, (u32) tc->t7);
-    crash_screen_print(30, 100, "S0:%08XH   S1:%08XH   S2:%08XH", (u32) tc->s0, (u32) tc->s1, (u32) tc->s2);
-    crash_screen_print(30, 110, "S3:%08XH   S4:%08XH   S5:%08XH", (u32) tc->s3, (u32) tc->s4, (u32) tc->s5);
-    crash_screen_print(30, 120, "S6:%08XH   S7:%08XH   T8:%08XH", (u32) tc->s6, (u32) tc->s7, (u32) tc->t8);
-    crash_screen_print(30, 130, "T9:%08XH   GP:%08XH   SP:%08XH", (u32) tc->t9, (u32) tc->gp, (u32) tc->sp);
-    crash_screen_print(30, 140, "S8:%08XH   RA:%08XH",            (u32) tc->s8, (u32) tc->ra);
-    crash_screen_print_fpcsr(tc->fpcsr);
-
-    osWritebackDCacheAll();
-    crash_screen_print_float_reg( 30, 170,  0, &tc->fp0.f.f_even);
-    crash_screen_print_float_reg(120, 170,  2, &tc->fp2.f.f_even);
-    crash_screen_print_float_reg(210, 170,  4, &tc->fp4.f.f_even);
-    crash_screen_print_float_reg( 30, 180,  6, &tc->fp6.f.f_even);
-    crash_screen_print_float_reg(120, 180,  8, &tc->fp8.f.f_even);
-    crash_screen_print_float_reg(210, 180, 10, &tc->fp10.f.f_even);
-    crash_screen_print_float_reg( 30, 190, 12, &tc->fp12.f.f_even);
-    crash_screen_print_float_reg(120, 190, 14, &tc->fp14.f.f_even);
-    crash_screen_print_float_reg(210, 190, 16, &tc->fp16.f.f_even);
-    crash_screen_print_float_reg( 30, 200, 18, &tc->fp18.f.f_even);
-    crash_screen_print_float_reg(120, 200, 20, &tc->fp20.f.f_even);
-    crash_screen_print_float_reg(210, 200, 22, &tc->fp22.f.f_even);
-    crash_screen_print_float_reg( 30, 210, 24, &tc->fp24.f.f_even);
-    crash_screen_print_float_reg(120, 210, 26, &tc->fp26.f.f_even);
-    crash_screen_print_float_reg(210, 210, 28, &tc->fp28.f.f_even);
-    crash_screen_print_float_reg( 30, 220, 30, &tc->fp30.f.f_even);
+    crash_screen_print(30, 20, "THREAD CONTEXT NOT AVAILABLE ON 3DS");
 }
 
 
@@ -251,60 +228,17 @@ void draw_crash_log(void) {
 // prints any function pointers it finds in the stack format:
 // SP address: function name
 void draw_stacktrace(OSThread *thread, UNUSED s32 cause) {
-    __OSThreadContext *tc = &thread->context;
-    u32 temp_sp = (tc->sp + 0x14);
-
+    // Stubbed out for 3DS - N64-specific thread context not available
     crash_screen_draw_rect(25, 20, 270, 210);
-    crash_screen_print(30, 25, "STACK TRACE FROM %08X:", temp_sp);
-    if ((u32) parse_map == MAP_PARSER_ADDRESS) {
-        crash_screen_print(30, 35, "CURRFUNC: NONE");
-    } else {
-        crash_screen_print(30, 35, "CURRFUNC: %s", parse_map(tc->pc));
-    }
-
-    osWritebackDCacheAll();
-
-    for (int i = 0; i < 18; i++) {
-        if ((u32) find_function_in_stack == MAP_PARSER_ADDRESS) {
-            crash_screen_print(30, (45 + (i * 10)), "STACK TRACE DISABLED");
-            break;
-        } else {
-            if ((u32) find_function_in_stack == MAP_PARSER_ADDRESS) {
-                return;
-            }
-
-            char *fname = find_function_in_stack(&temp_sp);
-            if ((fname == NULL) || ((*(u32*)temp_sp & 0x80000000) == 0)) {
-                crash_screen_print(30, (45 + (i * 10)), "%08X: UNKNOWN", temp_sp);
-            } else {
-                crash_screen_print(30, (45 + (i * 10)), "%08X: %s", temp_sp, fname);
-            }
-        }
-    }
+    crash_screen_print(30, 25, "STACK TRACE NOT AVAILABLE ON 3DS");
 }
 
 extern char *insn_disasm(u32 insn, u32 isPC);
 static u32 sProgramPosition = 0;
 void draw_disasm(OSThread *thread) {
-    __OSThreadContext *tc = &thread->context;
-    // u32 insn = *(u32*)tc->pc;
-
+    // Stubbed out for 3DS - N64-specific thread context not available
     crash_screen_draw_rect(25, 20, 270, 210);
-    if (sProgramPosition == 0) {
-        sProgramPosition = (tc->pc - 36);
-    }
-    crash_screen_print(30, 25, "DISASM %08X", sProgramPosition);
-    osWritebackDCacheAll();
-
-
-    for (int i = 0; i < 19; i++) {
-        u32 addr = (sProgramPosition + (i * 4));
-        u32 toDisasm = *(u32*)(addr);
-
-        crash_screen_print(30, (35 + (i * 10)), "%s", insn_disasm(toDisasm, (addr == tc->pc)));
-    }
-
-    osWritebackDCacheAll();
+    crash_screen_print(30, 25, "DISASM NOT AVAILABLE ON 3DS");
 }
 
 void draw_assert(UNUSED OSThread *thread) {
@@ -324,15 +258,8 @@ void draw_assert(UNUSED OSThread *thread) {
 }
 
 void draw_crash_screen(OSThread *thread) {
-    __OSThreadContext *tc = &thread->context;
-
-    s32 cause = ((tc->cause >> 2) & 0x1F);
-    if (cause == 23) { // EXC_WATCH
-        cause = 16;
-    }
-    if (cause == 31) { // EXC_VCED
-        cause = 17;
-    }
+    // Stubbed out for 3DS - N64-specific thread context not available
+    s32 cause = 0;
 
     if (gPlayer1Controller->buttonPressed & R_TRIG) {
         crashPage++;
@@ -378,15 +305,7 @@ void draw_crash_screen(OSThread *thread) {
 }
 
 OSThread *get_crashed_thread(void) {
-    OSThread *thread = __osGetCurrFaultedThread();
-
-    while (thread->priority != -1) {
-        if (thread->priority > OS_PRIORITY_IDLE && thread->priority < OS_PRIORITY_APPMAX
-            && ((thread->flags & (BIT(0) | BIT(1))) != 0)) {
-            return thread;
-        }
-        thread = thread->tlnext;
-    }
+    // Stubbed out for 3DS - N64-specific thread structure not available
     return NULL;
 }
 

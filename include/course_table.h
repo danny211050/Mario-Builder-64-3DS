@@ -13,7 +13,7 @@
 #define DEFINE_BONUS_COURSE(courseenum, _1) courseenum,
 
 enum CourseNum {
-    #include "levels/course_defines.h"
+    #include "course_defines.h"
     COURSE_END, // To mark end + 1 for marking max and count.
                 // TODO: clean this up. This is still bad. Which
                 // one is clearer? Need to get rid of one of these.

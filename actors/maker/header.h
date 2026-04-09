@@ -1,3 +1,8 @@
+#ifndef MAKER_HEADER_H
+#define MAKER_HEADER_H
+
+#include "PR/gbi.h"
+
 extern Lights1 maker_MakerVBlock_lights;
 extern Lights1 maker_MakerLava_lights;
 extern Lights1 maker_MakerBricks_lights;
@@ -1427,3 +1432,5 @@ extern Gfx mat_revert_maker_MakerPurpleDirt[];
 extern Gfx mat_maker_MakerWavyDirtBlue[];
 extern Gfx mat_revert_maker_MakerWavyDirtBlue[];
 extern Gfx maker_materials_mesh[];
+
+#endif

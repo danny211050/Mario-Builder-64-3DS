@@ -1,3 +1,8 @@
+#ifndef SB_CUBE_GEO_HEADER_H
+#define SB_CUBE_GEO_HEADER_H
+
+#include "PR/gbi.h"
+
 extern const GeoLayout sb_cube_geo[];
 extern u8 sb_cube_grid_ia8[];
 extern Vtx sb_cube_SelectionBox_mesh_layer_4_vtx_cull[8];
@@ -13,3 +18,5 @@ extern Gfx mat_revert_sb_cube_ZBUFF0_001_layer1[];
 extern Gfx sb_cube_SelectionBox_mesh_layer_4[];
 extern Gfx sb_cube_SelectionBox_mesh_layer_1[];
 extern Gfx sb_cube_material_revert_render_settings[];
+
+#endif

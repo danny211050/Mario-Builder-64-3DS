@@ -1,0 +1,14 @@
+{
+    "title": "Mario Builder 64",
+    "long_title": "Mario Builder 64 - 3DS Edition",
+    "publisher": "Rovertronic",
+    "short_description": "Build and play custom Mario 64 levels on your 3DS!",
+    "product_code": "CTR-P-MB64",
+    "unique_id": "0x4D423634",
+    "region": "FREE",
+    "age_rating": 0,
+    "banner_image": "build_3ds/banner.bmp",
+    "icon_image": "build_3ds/icon.bmp",
+    "romfs_path": "romfs",
+    "output_path": "mb64.3dsx"
+}

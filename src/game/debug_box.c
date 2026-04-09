@@ -18,15 +18,15 @@
  */
 
 #include "sm64.h"
-#include "game/game_init.h"
-#include "game/geo_misc.h"
-#include "engine/math_util.h"
-#include "engine/colors.h"
+#include "game_init.h"
+#include "geo_misc.h"
+#include "math_util.h"
+#include "colors.h"
 #include "area.h"
 #include "level_update.h"
 #include "print.h"
-#include "engine/surface_collision.h"
-#include "engine/surface_load.h"
+#include "surface_collision.h"
+#include "surface_load.h"
 #include "object_list_processor.h"
 #include "behavior_data.h"
 

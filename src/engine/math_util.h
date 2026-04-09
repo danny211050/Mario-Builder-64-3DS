@@ -449,7 +449,7 @@ extern f32 coss(s16 angle);
 
 #define ABS(x)  (((x) > 0) ? (x) : -(x))
 
-extern s32 roundf(f32);
+// extern s32 roundf(f32); // Conflicts with standard library
 // backwards compatibility
 #define round_float(in) roundf(in)
 
@@ -542,7 +542,7 @@ ALWAYS_INLINE void mtxf_to_mtx(register void *dest, register void *src) {
     // guMtxF2L(src, dest);
 }
 
-void mtxf_rotate_xy(Mtx *mtx, s16 angle);
+void mtxf_rotate_xy(Mat4 *mtx, s16 angle);
 void linear_mtxf_mul_vec3f(Mat4 m, Vec3f dst, Vec3f v);
 void linear_mtxf_mul_vec3f_and_translate(Mat4 m, Vec3f dst, Vec3f v);
 void linear_mtxf_transpose_mul_vec3f(Mat4 m, Vec3f dst, Vec3f v);

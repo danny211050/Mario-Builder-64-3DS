@@ -29,7 +29,9 @@
 #include "game/puppycam2.h"
 #include "game/puppyprint.h"
 #include "game/puppylights.h"
+#ifndef _3DS
 #include "game/emutest.h"
+#endif
 #include "game/cursed_mirror_maker.h"
 
 #include "config.h"

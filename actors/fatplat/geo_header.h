@@ -1,3 +1,8 @@
+#ifndef FATPLAT_GEO_HEADER_H
+#define FATPLAT_GEO_HEADER_H
+
+#include "PR/gbi.h"
+
 extern const GeoLayout fatplat_geo[];
 extern Lights1 fatplat_woodside_lights;
 extern Lights1 fatplat_woodtop_lights;
@@ -15,3 +20,5 @@ extern Gfx mat_fatplat_woodtop[];
 extern Gfx mat_revert_fatplat_woodtop[];
 extern Gfx fatplat_blaster_005_mesh_layer_1[];
 extern Gfx fatplat_material_revert_render_settings[];
+
+#endif

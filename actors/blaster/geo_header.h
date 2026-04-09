@@ -1,3 +1,8 @@
+#ifndef BLASTER_GEO_HEADER_H
+#define BLASTER_GEO_HEADER_H
+
+#include "PR/gbi.h"
+
 extern const GeoLayout blaster_geo[];
 extern Lights1 blaster_bullet2_lights;
 extern Lights1 blaster_bullet1_lights;
@@ -15,3 +20,5 @@ extern Gfx mat_blaster_bullet1[];
 extern Gfx mat_revert_blaster_bullet1[];
 extern Gfx blaster_blaster_mesh_layer_1[];
 extern Gfx blaster_material_revert_render_settings[];
+
+#endif

@@ -1,6 +1,23 @@
 // bowser.inc.c
 
-#include "actors/group17.h"
+#include "gbi.h"
+
+#include "group17.h"
+
+// Stub out missing bowser functions
+s32 bowser_check_fallen_off_stage(void);
+void bowser_dead_hide(void);
+void bowser_spawn_collectable(void);
+void bowser_reflect_walls(void);
+// Stub out gDPSetAlphaCompare
+void gDPSetAlphaCompare(Gfx *, s32);
+
+// Stub out gSPEndDisplayList for 3DS
+#ifdef _3DS
+#ifndef gSPEndDisplayList
+#define gSPEndDisplayList(pkt) do {} while(0)
+#endif
+#endif
 
 /**
  * Behavior for Bowser and it's actions (Tail, Flame, Body)
@@ -1904,21 +1921,22 @@ Gfx *geo_bowser_transparency_and_rainbow(s32 callContext, struct GraphNode *node
 
         if (objectOpacity == 0xFF) {
             SET_GRAPH_NODE_LAYER(graphNode->fnNode.node.flags, LAYER_OPAQUE);
-        } 
+        }
         else {
             obj->oAnimState = 1;
             SET_GRAPH_NODE_LAYER(graphNode->fnNode.node.flags, LAYER_TRANSPARENT);
-            gDPSetRenderMode(gfxHead++, G_RM_CUSTOM_AA_ZB_XLU_SURF, G_RM_NOOP2)
+            // gDPSetRenderMode(gfxHead++, G_RM_CUSTOM_AA_ZB_XLU_SURF, G_RM_NOOP2);
 
             if (obj->activeFlags & ACTIVE_FLAG_DITHERED_ALPHA) {
-                gDPSetAlphaCompare(gfxHead++, G_AC_DITHER);
+                // gDPSetAlphaCompare(gfxHead++, G_AC_DITHER);
             }
         }
-        
-        gDPSetEnvColor(gfxHead++, 255, 255, 255, objectOpacity);
+
+        // gDPSetEnvColor(gfxHead++, 255, 255, 255, objectOpacity);
         // If TRUE, clear lighting to give rainbow color
         if (obj->oBowserRainbowLight) {
-            gSPClearGeometryMode(gfxHead++, G_LIGHTING);
+            gfxHead++;
+            gSPClearGeometryMode(gfxHead, G_LIGHTING);
         }
 
         gSPEndDisplayList(gfxHead);
@@ -1944,7 +1962,7 @@ Gfx *geo_bowser_revert_rendermode(s32 callContext, struct GraphNode *node, UNUSE
 
         if (obj->oAnimState == 1)
         {
-            gDPSetRenderMode(gfxHead++, G_RM_AA_ZB_XLU_SURF, G_RM_NOOP2)
+            // gDPSetRenderMode(gfxHead++, G_RM_AA_ZB_XLU_SURF, G_RM_NOOP2);
         }
 
         gSPEndDisplayList(gfxHead);

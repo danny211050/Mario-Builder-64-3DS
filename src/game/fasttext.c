@@ -6,7 +6,32 @@
 #define TEX_ASCII_START '!'
 #define TAB_WIDTH 16
 
+#ifdef _3DS
+// Define missing constants for 3DS build
+#define PRIMITIVE 0
+#define TEXEL0 0
+#endif
+
 #define G_CC_TEXT PRIMITIVE, 0, TEXEL0, 0, 0, 0, 0, TEXEL0
+
+#ifdef _3DS
+// Stub definitions for GBI macros that are not properly defined in 3DS gbi.h
+#ifndef gDPLoadTextureBlock_4bS
+#define gDPLoadTextureBlock_4bS(...) do {} while(0)
+#endif
+#ifndef gDPSetPrimColor
+#define gDPSetPrimColor(...) do {} while(0)
+#endif
+#ifndef gDPSetCombineMode
+#define gDPSetCombineMode(...) do {} while(0)
+#endif
+#ifndef gDPPipeSync
+#define gDPPipeSync(pkt) do {} while(0)
+#endif
+#ifndef gSPTextureRectangle
+#define gSPTextureRectangle(...) do {} while(0)
+#endif
+#endif
 
 __asm__(
  ".section \".rodata\", \"a\", @progbits\n"

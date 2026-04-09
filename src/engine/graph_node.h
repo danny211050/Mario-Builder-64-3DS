@@ -7,7 +7,7 @@
 #include "types.h"
 #include "sm64.h"
 #include "geo_commands.h"
-#include "game/memory.h"
+#include "memory.h"
 
 // UCode indices for listHeads & listTails
 enum GraphNodeUCodes {
